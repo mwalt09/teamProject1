@@ -1,29 +1,81 @@
 html {
     overflow-x: hidden;
 }
+
 body{
     margin: 0 auto;
+    background-color: black;
+    font-family: "Roboto", sans-serif;
 }
 
- .hero-video{
-      position: absolute;
-    top: 50%;
-    left: 50%;
+h2 {
+  font-weight: 100;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.grid{
+  padding: 40px;
+}
+
+#answers {
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.btn {
+  width: 200px;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: "Roboto";
+  font-weight: 100;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin: 5px;
+  background-color: #BE1E2D;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  color: white;
+  background-color: #5f0f16;
+}
+
+.hero-video{
+    position: absolute;
+    /*top: 50%;
+    left: 50%;*/
     min-width: 100%;
     min-height: 100%;
-    width: 100%;
+    /*width: 100%;*/
     height: auto;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
+    /*-webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);*/
 
-    }
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+}
+
 #title{
      clear: both;
      top: 0;
      width: 600px;
-     display: flex;
-     justify-content: center;
+     align-self: center;
+}
 
+@media only screen and (max-width: 500px) {
+  #title{ width:300px;}
 }
 
 video {
@@ -36,7 +88,27 @@ video {
     height: auto;
     z-index: -100;
     transform: translateX(-50%) translateY(-50%);
- background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
-  background-size: cover;
-  transition: 1s opacity;
+    /*background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;*/
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+#map {
+  height: 400px;
+}
+
+#mapText {
+  font-family: "Roboto", sans-serif;
+  color: #BE1E2D;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }

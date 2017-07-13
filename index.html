@@ -2,45 +2,61 @@
 <html>
 
 <head>
-  <title>Train Time Search</title>
+  <title> Coffee-Up </title>
   <meta charset="utf-8">
-  <!-- jquery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- Link to Moment.js should go here -->
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  <!-- firebase -->
-
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
-  <!-- CSS -->
-  
   <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
 
 </head>
 
 
 <body>
 
-   <div class="container"> 
+   <div class="container">
 
         <header >
           <img src="assets/images/logoCoffeeup.png" type="image/png" id="title">
         </header>
-    
+
      <div id ="content" class="main-content-inner">
 
       <section class="full-screen-hero">
-      <video class="hero-video" autoplay loop poster="https://coffeebeansdelivered.com.au/wp-content/themes/pp-main/video/cbd_hero.mp4">
-        <source src="assets/images/new.mp4" type="video/mp4">
-      </video>
-        
+        <video class="hero-video" autoplay loop >
+          <source src="assets/images/new.mp4" type="video/mp4">
+        </video>
       </section>
-     </div>
-     
+
+      <div class="grid">
+              <div id="questions">
+                  <h2 id="questionString">What are you in the mood for?</h2>
+              </div>
+              <div id="answers">
+                  <button class="btn" id="buttonOne">Black</button>
+                  <br>
+                  <button class="btn" id="buttonTwo">White</button>
+              </div>
 
 
-   </div>
+      <div id="mapText"></div>
+      <br>
+      <div id="map"></div>
+
+    </div> <!--closes content-->
+
+
+
+   </div> <!--closes container-->
+
+  <!-- Google Maps API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYSt64gQeJuUFHPhjWPTfiJmGjUOaBm6Y&libraries=places" async defer></script>
+
+  <script src="assets/Javascript/app.js"></script>
+
+
+
 </body>
 </html>
