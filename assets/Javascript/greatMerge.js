@@ -241,8 +241,14 @@ $('button').on('click', function () {
     case 'coffee':
       $('#questionString').html("RESULT: TRY A CAFE AU LATE");
       setDescription('cafe au lait');
+      $('#images').show();
+      $('#images').attr("src", "assets/Images/coffeeTypes/auLait.png");
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
+      auLait++;
+      database.ref().update({
+        auLait: auLait
+      });
       initMap();
       break;
     case 'espresso':
@@ -253,15 +259,27 @@ $('button').on('click', function () {
     case 'sweet':
       $('#questionString').html("RESULT: TRY A MACCHIATO?");
       setDescription('macchiato');
+      $('#images').show();
+      $('#images').attr("src", "assets/Images/coffeeTypes/macchiatto.png");
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
+      macchiatto++;
+      database.ref().update({
+        macchiatto: macchiatto
+      });
       initMap();
       break;
     case 'bitter':
       $('#questionString').html("RESULT: CAPPUCCINO TIME");
       setDescription('cappuccino');
+      $('#images').show();
+      $('#images').attr("src", "assets/Images/coffeeTypes/cappuccino.png");
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
+      cappuccino++;
+      database.ref().update({
+        cappuccino: cappuccino
+      });
       initMap();
       break;
     case 'Steamed':
@@ -272,15 +290,27 @@ $('button').on('click', function () {
     case 'unsweet':
       $('#questionString').html("RESULT: LATTE TIME");
       setDescription('latte');
+      $('#images').show();
+      $('#images').attr("src", "assets/Images/coffeeTypes/latte.png");
       $('#buttonOne').hide("unsweet");
       $('#buttonTwo').hide("chocolatey");
+      latte++;
+      database.ref().update({
+        latte: latte
+      });
       initMap();
       break;
     case 'chocolatey':
       $('#questionString').html("RESULT: HAVE A MOCHA");
       setDescription('mocha');
+      $('#images').show();
+      $('#images').attr("src", "assets/Images/coffeeTypes/mocha.png");
       $('#buttonOne').hide("unsweet");
       $('#buttonTwo').hide("chocolatey");
+      mocha++;
+      database.ref().update({
+        mocha: mocha
+      });
       initMap();
       break;
 
