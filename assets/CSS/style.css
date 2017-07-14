@@ -106,6 +106,25 @@ video {
   letter-spacing: 5px;
 }
 
+#imageContainer {
+  align-self: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#images {
+  display: block;
+  max-width:250px;
+  max-height:250px;
+  width: auto;
+  height: auto;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+
 html,
 body {
   width: 100%;

@@ -1,6 +1,8 @@
 
 $('#questionString').html("What are your in the mood for?");
 
+$('#images').hide();
+
 $('button').on('click', function () {
     // alert($(this).text());
     userChoice = $(this).text();
@@ -19,6 +21,8 @@ $('button').on('click', function () {
     }
     if (userChoice === "Large") {
         $('#questionString').html("RESULT: DRINK AN AMERICANO");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/coffeeTypes/americano.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
         initMap();
@@ -26,12 +30,16 @@ $('button').on('click', function () {
     }
     if (userChoice === "flavor") {
         $('#questionString').html("RESULT: HAVE AN ESPRESSO");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/coffeeTypes/espresso.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
         initMap();
     }
     if (userChoice === "energy") {
         $('#questionString').html("RESULT: FOR ROUGH DAYS, TRY A RED EYE");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/coffeeTypes/redEye.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
         initMap();
@@ -50,6 +58,8 @@ $('button').on('click', function () {
     }
     if (userChoice === "coffee") {
         $('#questionString').html("RESULT: TRY A CAFE AU LATE");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/coffeeTypes/auLait.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
         initMap();
@@ -61,12 +71,16 @@ $('button').on('click', function () {
     }
     if (userChoice === "sweet") {
         $('#questionString').html("RESULT: TRY A MACHIATTO?");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/coffeeTypes/macchiatto.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
         initMap();
     }
     if (userChoice === "bitter") {
         $('#questionString').html("RESULT: CAPPUCCINO TIME");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/cappuccino.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
         initMap();
@@ -79,12 +93,16 @@ $('button').on('click', function () {
     }
     if (userChoice === "unsweet") {
         $('#questionString').html("RESULT: LATTE TIME");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/coffeeTypes/latte.png");
         $('#buttonOne').hide("unsweet");
         $('#buttonTwo').hide("chocolatey");
         initMap();
     }
     if (userChoice === "chocolatey") {
         $('#questionString').html("RESULT: HAVE A MOCHA");
+        $('#images').show();
+        $('#images').attr("src", "assets/Images/coffeeTypes/mocha.png");
         $('#buttonOne').hide("unsweet");
         $('#buttonTwo').hide("chocolatey");
         initMap();
