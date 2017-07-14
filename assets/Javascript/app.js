@@ -1,6 +1,13 @@
 
 $('#questionString').html("What are your in the mood for?");
 
+$('button').keypress(function(event){
+
+   if (event.keyCode === 10 || event.keyCode === 13)
+        event.preventDefault();
+
+ });
+
 $('button').on('click', function () {
     // alert($(this).text());
     userChoice = $(this).text();
