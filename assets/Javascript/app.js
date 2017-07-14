@@ -1,3 +1,50 @@
+var config = {
+    apiKey: "AIzaSyAyiP6kOsyeTTR6DPWoKJDh0ouv24I_8Ws",
+    authDomain: "coffeeup-f6014.firebaseapp.com",
+    databaseURL: "https://coffeeup-f6014.firebaseio.com",
+    projectId: "coffeeup-f6014",
+    storageBucket: "",
+    messagingSenderId: "481137159989"
+  };
+
+  firebase.initializeApp(config);
+  var database = firebase.database();
+
+  var americano = 0;
+  var auLait = 0;
+  var cappuccino = 0;
+  var espresso = 0;
+  var latte = 0;
+  var macchiatto = 0;
+  var mocha = 0;
+  var redEye = 0;
+
+  database.ref().on("value", function(snapshot) {
+    if(snapshot.child("latte").exists()) {
+      latte = snapshot.val().latte;
+    }
+    if(snapshot.child("americano").exists()) {
+      americano = snapshot.val().americano;
+    }
+    if(snapshot.child("auLait").exists()) {
+      auLait = snapshot.val().auLait;
+    }
+    if(snapshot.child("cappuccino").exists()) {
+      cappuccino = snapshot.val().cappuccino;
+    }
+    if(snapshot.child("espresso").exists()) {
+      espresso = snapshot.val().espresso;
+    }
+    if(snapshot.child("macchiatto").exists()) {
+      macchiatto = snapshot.val().macchiatto;
+    }
+    if(snapshot.child("mocha").exists()) {
+      mocha = snapshot.val().mocha;
+    }
+    if(snapshot.child("redEye").exists()) {
+      redEye = snapshot.val().redEye;
+    }
+  });
 
 $('#questionString').html("What are your in the mood for?");
 
@@ -32,6 +79,10 @@ $('button').on('click', function () {
         $('#images').attr("src", "assets/Images/coffeeTypes/americano.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
+        americano++;
+        database.ref().update({
+          americano: americano
+        });
         initMap();
 
     }
@@ -41,6 +92,10 @@ $('button').on('click', function () {
         $('#images').attr("src", "assets/Images/coffeeTypes/espresso.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
+        espresso++;
+        database.ref().update({
+          espresso: espresso
+        });
         initMap();
     }
     if (userChoice === "energy") {
@@ -49,6 +104,10 @@ $('button').on('click', function () {
         $('#images').attr("src", "assets/Images/coffeeTypes/redEye.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
+        redEye++;
+        database.ref().update({
+          redEye: redEye
+        });
         initMap();
     }
 
@@ -69,6 +128,10 @@ $('button').on('click', function () {
         $('#images').attr("src", "assets/Images/coffeeTypes/auLait.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
+        auLait++;
+        database.ref().update({
+          auLait: auLait
+        });
         initMap();
     }
     if (userChoice === "espresso") {
@@ -82,14 +145,22 @@ $('button').on('click', function () {
         $('#images').attr("src", "assets/Images/coffeeTypes/macchiatto.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
+        macchiatto++;
+        database.ref().update({
+          macchiatto: macchiatto
+        });
         initMap();
     }
     if (userChoice === "bitter") {
         $('#questionString').html("RESULT: CAPPUCCINO TIME");
         $('#images').show();
-        $('#images').attr("src", "assets/Images/cappuccino.png");
+        $('#images').attr("src", "assets/Images/coffeeTypes/cappuccino.png");
         $('#buttonOne').hide("flavor");
         $('#buttonTwo').hide("energy");
+        cappuccino++;
+        database.ref().update({
+          cappuccino: cappuccino
+        });
         initMap();
     }
 
@@ -104,6 +175,10 @@ $('button').on('click', function () {
         $('#images').attr("src", "assets/Images/coffeeTypes/latte.png");
         $('#buttonOne').hide("unsweet");
         $('#buttonTwo').hide("chocolatey");
+        latte++;
+        database.ref().update({
+          latte: latte
+        });
         initMap();
     }
     if (userChoice === "chocolatey") {
@@ -112,15 +187,17 @@ $('button').on('click', function () {
         $('#images').attr("src", "assets/Images/coffeeTypes/mocha.png");
         $('#buttonOne').hide("unsweet");
         $('#buttonTwo').hide("chocolatey");
+        mocha++;
+        database.ref().update({
+          mocha: mocha
+        });
         initMap();
     }
 
 
-
-
-
-
 });
+
+
 
 
 
