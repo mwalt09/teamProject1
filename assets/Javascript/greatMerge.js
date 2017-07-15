@@ -1,3 +1,7 @@
+
+$("#floating-panel").hide();
+$("#textDirections").hide();
+
 //============================================================= FIREBASE ===============================================================
 
 var config = {
@@ -144,12 +148,12 @@ function setDescription(text) {
   wikiSearch(text).then(function(data) {
 
     if (text !== "list_of_coffee_drinks") {
-      $('#questionString').html("RESULT: " + question.toUpperCase());
+      $('#questionString').html(question.toUpperCase());
       $('#wiki-info').text(data);
       $('#buttonOne').hide(btn1);
       $('#buttonTwo').hide(btn2);
     } else {
-      $('#questionString').html("RESULT: " + question.toUpperCase());
+      $('#questionString').html(question.toUpperCase());
       $('#wiki-info').text("Regular coffee (slow brewed as with a filter or cafetière) is sometimes combined with espresso to increase intensity of flavour or caffeine. This may be called a variety of names, most commonly 'red eye', 'shot in the dark', and 'depth charge' – though this is a federally registered trademark of a company, Caribou Coffee, so usage is restricted. Coffeehouse chains may have their own names, such as 'turbo' at Dunkin' Donuts. A double shot of espresso in the coffee may be termed a 'black eye', and a triple shot a 'dead eye'. 'Caffè Tobio' is a version with an equal amount of coffee to espresso.");
       $('#buttonOne').hide(btn1);
       $('#buttonTwo').hide(btn2);
@@ -182,7 +186,7 @@ $('button').on('click', function () {
       $('#buttonTwo').html("Large");
       break;
     case 'Large':
-      $('#questionString').html("RESULT: DRINK AN AMERICANO");
+      $('#questionString').html("DRINK AN AMERICANO");
       setDescription('americano');
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
@@ -200,7 +204,7 @@ $('button').on('click', function () {
       $('#buttonTwo').html("energy");
       break;
     case 'flavor':
-      $('#questionString').html("RESULT: HAVE AN ESPRESSO");
+      $('#questionString').html("HAVE AN ESPRESSO");
       setDescription('espresso');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/espresso.png");
@@ -213,7 +217,7 @@ $('button').on('click', function () {
       initMap();
       break;
     case 'energy':
-      $('#questionString').html("RESULT: FOR ROUGH DAYS, TRY A RED EYE");
+      $('#questionString').html("FOR ROUGH DAYS, TRY A RED EYE");
       setDescription('list_of_coffee_drinks');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/redEye.png");
@@ -239,7 +243,7 @@ $('button').on('click', function () {
       $('#buttonTwo').html("espresso");
       break;
     case 'coffee':
-      $('#questionString').html("RESULT: TRY A CAFE AU LATE");
+      $('#questionString').html("TRY A CAFE AU LATE");
       setDescription('cafe au lait');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/auLait.png");
@@ -257,7 +261,7 @@ $('button').on('click', function () {
       $('#buttonTwo').html("bitter");
       break;
     case 'sweet':
-      $('#questionString').html("RESULT: TRY A MACCHIATO?");
+      $('#questionString').html("TRY A MACCHIATO?");
       setDescription('macchiato');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/macchiatto.png");
@@ -270,7 +274,7 @@ $('button').on('click', function () {
       initMap();
       break;
     case 'bitter':
-      $('#questionString').html("RESULT: CAPPUCCINO TIME");
+      $('#questionString').html("CAPPUCCINO TIME");
       setDescription('cappuccino');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/cappuccino.png");
@@ -288,7 +292,7 @@ $('button').on('click', function () {
       $('#buttonTwo').html("chocolatey");
       break;
     case 'unsweet':
-      $('#questionString').html("RESULT: LATTE TIME");
+      $('#questionString').html("LATTE TIME");
       setDescription('latte');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/latte.png");
@@ -301,7 +305,7 @@ $('button').on('click', function () {
       initMap();
       break;
     case 'chocolatey':
-      $('#questionString').html("RESULT: HAVE A MOCHA");
+      $('#questionString').html("HAVE A MOCHA");
       setDescription('mocha');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/mocha.png");
@@ -328,8 +332,11 @@ var infowindow;
 var infoWindowUser;
 var interval;
 var GeoMarker;
+var austin;
 
 function initMap() {
+
+  $("#floating-panel").show();
 
   $("#mapText").html("Go and get some!");
 
@@ -380,9 +387,9 @@ function initMap() {
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindowUser.setPosition(pos);
-    infoWindowUser.setContent(browserHasGeolocation
-      ? 'Error: The Geolocation service failed.'
-      : 'Error: Your browser doesn\'t support geolocation.');
+    infoWindowUser.setContent(browserHasGeolocation ?
+       'Error: The Geolocation service failed.' :
+       'Error: Your browser doesn\'t support geolocation.');
     infoWindowUser.open(map);
     console.log("I just blocked this");
   }
@@ -392,7 +399,7 @@ function search() {
 
   var request = {
     location: pos,
-    radius: '4000',
+    radius: '5000',
     type: ["cafe"]
   };
 
@@ -409,8 +416,17 @@ function callback(results, status) {
   }
 }
 
+
+// Function that creates the Google Maps Marker
+var id = 0;
+var destination;
+var placeLoc;
+var isOpen;
+
+
+
 function createMarker(place) {
-  var placeLoc = place.geometry.location;
+  placeLoc = place.geometry.location;
   var marker = new google.maps.Marker({
     map: map,
     // icon: 'coffee-icon-png-24.png',
@@ -418,8 +434,96 @@ function createMarker(place) {
     position: place.geometry.location
   });
 
+  // console.log("item: " + place.geometry.location);
+  console.log(place);
+
+  google.maps.event.addListener(infowindow, 'domready', function() {
+    var iwOuter = $('.gm-style-iw');
+    var iwBackground = iwOuter.prev();
+    // iwBackground.children(':nth-child(2)').css({'display': 'none'});
+    // iwBackground.children(':nth-child(4)').css({'display': 'none'});
+    // iwOuter.parent().parent().css({left: '115px'});
+    // iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+    // iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
+    // iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+
+    var iwCloseBtn = iwOuter.next();
+    iwCloseBtn.css({
+      opacity: '1', // by default the close button has an opacity of 0.7
+      right: '8px', top: '15px', // button repositioning
+      border: '7px solid #48b5e9', // increasing button border and new color
+      'border-radius': '13px', // circular effect
+      'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+    });
+
+    iwCloseBtn.mouseout(function(){
+      $(this).css({opacity: '1'});
+    });
+  });
+
+
+
   google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
+    isOpen = place.opening_hours.open_now;
+
+    if (isOpen !== true) {
+      isOpen = "Closed";
+    } else {
+      isOpen = "Open";
+    }
+
+    console.log(isOpen);
+    var contentString = '<div id="iw-container">' +
+                      '<div class="iw-title">' + place.name + '</div>' +
+                        '<div class="iw-content">' +
+                          '<div id="open">' + isOpen + '</div><br>' +
+                          '<div id="rating">' + "Rating: " + place.rating + '</div>' +
+                          '<img id="image" src="' + place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}) + '"><br>' +
+                          '<button id="directions" onclick="getDirections()">' + "Directions" + '</button>' +
+                        '</div>' +
+                      '</div>' +
+                    '</div>';
+    destination = place.geometry.location;
+    infowindow.setContent(contentString);
     infowindow.open(map, this);
+  });
+}
+
+var travelMode = 'DRIVING';
+
+function getDirections() {
+  $("#textDirections").show();
+  var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer;
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: {
+      lat: 30.2672,
+      lng: -97.7431
+    }
+  });
+  directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById('textDirections'));
+  document.getElementById('mode').addEventListener('change', function() {
+    travelMode = $('#mode').val();
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+  });
+
+  calculateAndDisplayRoute(directionsService, directionsDisplay);
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  directionsService.route({
+    origin: pos,
+    destination: destination,
+    travelMode: travelMode,
+    // travelMode: 'DRIVING',
+    provideRouteAlternatives: true
+  }, function(response, status) {
+    if (status === 'OK') {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
   });
 }
