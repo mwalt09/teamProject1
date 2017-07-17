@@ -1,6 +1,7 @@
 
 $("#floating-panel").hide();
 $("#textDirections").hide();
+$("#")
 
 //============================================================= FIREBASE ===============================================================
 
@@ -50,7 +51,81 @@ var config = {
     if(snapshot.child("redEye").exists()) {
       redEye = snapshot.val().redEye;
     }
+
   });
+
+function topThree(){
+  var coffee=[{
+            name:"Americano",
+            like:americano
+     },
+     {
+            name:"Latte",
+            like:latte
+    },
+
+   {       name:"Aulait",
+            like:auLait
+
+   },
+    {       name:"Cappiccino",
+            like:cappuccino
+
+   },
+    {       name:"Espresso",
+            like:espresso
+
+   },
+    {       name:"Macchiatto",
+            like:macchiatto
+
+   },
+    {       name:"Mocha",
+            like:mocha
+
+   },
+    {       name:"Redeye",
+            like:redEye
+
+   }
+  ];
+
+
+   // get keys from object
+   var arr = Object.keys(coffee);
+   // sort keys array based on score value
+   arr.sort(function(a, b) {
+     return coffee[b].like - coffee[a].like;
+   });
+   // iterate key array and assign rank value to object
+   for (var i = 0, rank = 1; i < arr.length; i++) {
+     // assign rank value
+     coffee[arr[i]].rank = rank;
+     // increment rank only if score value is changed
+     if (coffee[arr[i + 1]] && coffee[arr[i]].like != coffee[arr[i + 1]].like)
+       rank++;
+
+   }
+
+
+   coffee.sort(function(a, b){
+       if(a.rank < b.rank) return -1;
+       if(a.rank > b.rank) return 1;
+       return 0;
+       });
+   $("#ti").html("Top 3 preferd coffees")
+      $("#top").html("");
+     for (i=0; i<coffee.length;i++){
+       if (coffee[i].rank<=3) {
+         console.log(coffee[i]);
+          $("#top").append("("+coffee[i].rank+") "+coffee[i].name+"<br>")
+         }
+       }
+
+     }
+
+
+
 
 //============================================================= WIKI API ===============================================================
 
@@ -163,7 +238,7 @@ function setDescription(text) {
 
 //============================================================= APP ===============================================================
 
-$('#questionString').html("What are your in the mood for?");
+$('#questionString').html("What are you in the mood for?");
 
 $('#images').hide();
 
@@ -190,6 +265,7 @@ $('button').on('click', function () {
       setDescription('americano');
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/americano.png");
       americano++;
@@ -197,6 +273,7 @@ $('button').on('click', function () {
         americano: americano
       });
       initMap();
+      topThree();
       break;
     case 'Small':
       $('#questionString').html("Is flavor or energy more important?");
@@ -206,6 +283,7 @@ $('button').on('click', function () {
     case 'flavor':
       $('#questionString').html("HAVE AN ESPRESSO");
       setDescription('espresso');
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/espresso.png");
       $('#buttonOne').hide("flavor");
@@ -214,6 +292,7 @@ $('button').on('click', function () {
       database.ref().update({
         espresso: espresso
       });
+      topThree();
       initMap();
       break;
     case 'energy':
@@ -221,12 +300,14 @@ $('button').on('click', function () {
       setDescription('list_of_coffee_drinks');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/redEye.png");
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
       redEye++;
       database.ref().update({
         redEye: redEye
       });
+      topThree();
       initMap();
       break;
 
@@ -245,6 +326,7 @@ $('button').on('click', function () {
     case 'coffee':
       $('#questionString').html("TRY A CAFE AU LATE");
       setDescription('cafe au lait');
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/auLait.png");
       $('#buttonOne').hide("flavor");
@@ -253,6 +335,7 @@ $('button').on('click', function () {
       database.ref().update({
         auLait: auLait
       });
+      topThree();
       initMap();
       break;
     case 'espresso':
@@ -265,12 +348,14 @@ $('button').on('click', function () {
       setDescription('macchiato');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/macchiatto.png");
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
       macchiatto++;
       database.ref().update({
         macchiatto: macchiatto
       });
+      topThree();
       initMap();
       break;
     case 'bitter':
@@ -278,12 +363,14 @@ $('button').on('click', function () {
       setDescription('cappuccino');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/cappuccino.png");
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
       cappuccino++;
       database.ref().update({
         cappuccino: cappuccino
       });
+      topThree();
       initMap();
       break;
     case 'Steamed':
@@ -296,12 +383,14 @@ $('button').on('click', function () {
       setDescription('latte');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/latte.png");
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#buttonOne').hide("unsweet");
       $('#buttonTwo').hide("chocolatey");
       latte++;
       database.ref().update({
         latte: latte
       });
+      topThree();
       initMap();
       break;
     case 'chocolatey':
@@ -309,12 +398,14 @@ $('button').on('click', function () {
       setDescription('mocha');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/mocha.png");
+      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#buttonOne').hide("unsweet");
       $('#buttonTwo').hide("chocolatey");
       mocha++;
       database.ref().update({
         mocha: mocha
       });
+      topThree();
       initMap();
       break;
 
