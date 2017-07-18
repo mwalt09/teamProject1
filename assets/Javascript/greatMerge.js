@@ -1,7 +1,7 @@
 
 $("#floating-panel").hide();
 $("#textDirections").hide();
-$("#")
+$("#rankingContainer").hide();
 
 //============================================================= FIREBASE ===============================================================
 
@@ -273,6 +273,7 @@ $('button').on('click', function () {
         americano: americano
       });
       initMap();
+      $("#rankingContainer").show();
       topThree();
       break;
     case 'Small':
@@ -292,6 +293,7 @@ $('button').on('click', function () {
       database.ref().update({
         espresso: espresso
       });
+      $("#rankingContainer").show();
       topThree();
       initMap();
       break;
@@ -307,6 +309,7 @@ $('button').on('click', function () {
       database.ref().update({
         redEye: redEye
       });
+      $("#rankingContainer").show();
       topThree();
       initMap();
       break;
@@ -335,6 +338,7 @@ $('button').on('click', function () {
       database.ref().update({
         auLait: auLait
       });
+      $("#rankingContainer").show();
       topThree();
       initMap();
       break;
@@ -355,6 +359,7 @@ $('button').on('click', function () {
       database.ref().update({
         macchiatto: macchiatto
       });
+      $("#rankingContainer").show();
       topThree();
       initMap();
       break;
@@ -370,6 +375,7 @@ $('button').on('click', function () {
       database.ref().update({
         cappuccino: cappuccino
       });
+      $("#rankingContainer").show();
       topThree();
       initMap();
       break;
@@ -390,6 +396,7 @@ $('button').on('click', function () {
       database.ref().update({
         latte: latte
       });
+      $("#rankingContainer").show();
       topThree();
       initMap();
       break;
