@@ -114,12 +114,12 @@ function topThree(){
        if(a.rank > b.rank) return 1;
        return 0;
        });
-   $("#ti").html("Top 3 preferd coffees")
+   $("#ti").html("Choose your next coffee, here are our top selections:");
       $("#top").html("");
      for (i=0; i<coffee.length;i++){
        if (coffee[i].rank<=3) {
          console.log(coffee[i]);
-          $("#top").append("("+coffee[i].rank+") "+coffee[i].name+"<br>")
+          $("#top").append('<div class="col s12 m8 offset-m2 l6 offset-l3"><div class="card-panel grey lighten-5 z-depth-1"><div class="row valign-wrapper"><div class="col s2"><img src="https://freeiconshop.com/wp-content/uploads/edd/coffee-flat.png" alt="" class="circle responsive-img">'+ ' ' + '</div><div class="col s10"><span class="black-text">' + coffee[i].rank + ')   ' + coffee[i].name + '</span></div></div></div></div> <br>');
          }
        }
 
@@ -263,6 +263,8 @@ $('button').on('click', function () {
       break;
     case 'Large':
       $('#questionString').html("DRINK AN AMERICANO");
+      $("#questionString").css("margin-top", "20px");
+      $("#answers").hide();
       setDescription('americano');
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
@@ -284,6 +286,8 @@ $('button').on('click', function () {
       break;
     case 'flavor':
       $('#questionString').html("HAVE AN ESPRESSO");
+      $("#questionString").css("margin-top", "85px");
+      $("#answers").hide();
       setDescription('espresso');
       $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#images').show();
@@ -300,6 +304,8 @@ $('button').on('click', function () {
       break;
     case 'energy':
       $('#questionString').html("FOR ROUGH DAYS, TRY A RED EYE");
+      $("#questionString").css("margin-top", "50px");
+      $("#answers").hide();
       setDescription('list_of_coffee_drinks');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/redEye.png");
@@ -329,6 +335,8 @@ $('button').on('click', function () {
       break;
     case 'coffee':
       $('#questionString').html("TRY A CAFE AU LATE");
+      $("#questionString").css("margin-top", "30px");
+      $("#answers").hide();
       setDescription('cafe au lait');
       $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
       $('#images').show();
@@ -349,7 +357,9 @@ $('button').on('click', function () {
       $('#buttonTwo').html("bitter");
       break;
     case 'sweet':
-      $('#questionString').html("TRY A MACCHIATO?");
+      $('#questionString').html("TRY A MACCHIATO");
+      $("#questionString").css("margin-top", "45px");
+      $("#answers").hide();
       setDescription('macchiato');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/macchiatto.png");
@@ -366,6 +376,8 @@ $('button').on('click', function () {
       break;
     case 'bitter':
       $('#questionString').html("CAPPUCCINO TIME");
+      $("#questionString").css("margin-top", "40px");
+      $("#answers").hide();
       setDescription('cappuccino');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/cappuccino.png");
@@ -387,6 +399,8 @@ $('button').on('click', function () {
       break;
     case 'unsweet':
       $('#questionString').html("LATTE TIME");
+      $("#questionString").css("margin-top", "40px");
+      $("#answers").hide();
       setDescription('latte');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/latte.png");
@@ -403,6 +417,8 @@ $('button').on('click', function () {
       break;
     case 'chocolatey':
       $('#questionString').html("HAVE A MOCHA");
+      $("#questionString").css("margin-top", "45px");
+      $("#answers").hide();
       setDescription('mocha');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/mocha.png");
@@ -434,8 +450,6 @@ var GeoMarker;
 var austin;
 
 function initMap() {
-
-  $("#floating-panel").show();
 
   $("#mapText").html("Go and get some!");
 
@@ -601,8 +615,14 @@ function getDirections() {
       lng: -97.7431
     }
   });
+  $("#floating-panel").show();
+  $("#textDirections").css("width", "40%");
+  $("#map").css("width", "60%");
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel(document.getElementById('textDirections'));
+  var control = document.getElementById("floating-panel");
+  control.style.display = "block";
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
   document.getElementById('mode').addEventListener('change', function() {
     travelMode = $('#mode').val();
     calculateAndDisplayRoute(directionsService, directionsDisplay);
