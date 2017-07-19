@@ -275,7 +275,6 @@ $('button').on('click', function () {
       database.ref().update({
         americano: americano
       });
-      initMap();
       $("#rankingContainer").show();
       topThree();
       break;
@@ -300,7 +299,6 @@ $('button').on('click', function () {
       });
       $("#rankingContainer").show();
       topThree();
-      initMap();
       break;
     case 'energy':
       $('#questionString').html("FOR ROUGH DAYS, TRY A RED EYE");
@@ -318,7 +316,6 @@ $('button').on('click', function () {
       });
       $("#rankingContainer").show();
       topThree();
-      initMap();
       break;
 
       //white coffee
@@ -349,7 +346,6 @@ $('button').on('click', function () {
       });
       $("#rankingContainer").show();
       topThree();
-      initMap();
       break;
     case 'espresso':
       $('#questionString').html("Sweet or Bitter?");
@@ -372,7 +368,6 @@ $('button').on('click', function () {
       });
       $("#rankingContainer").show();
       topThree();
-      initMap();
       break;
     case 'bitter':
       $('#questionString').html("CAPPUCCINO TIME");
@@ -390,7 +385,6 @@ $('button').on('click', function () {
       });
       $("#rankingContainer").show();
       topThree();
-      initMap();
       break;
     case 'Steamed':
       $('#questionString').html("unsweet or chocolatey?");
@@ -413,7 +407,6 @@ $('button').on('click', function () {
       });
       $("#rankingContainer").show();
       topThree();
-      initMap();
       break;
     case 'chocolatey':
       $('#questionString').html("HAVE A MOCHA");
@@ -430,7 +423,6 @@ $('button').on('click', function () {
         mocha: mocha
       });
       topThree();
-      initMap();
       break;
 
   }
@@ -438,6 +430,15 @@ $('button').on('click', function () {
 });
 
 //============================================================= GOOGLE MAPS API ===============================================================
+
+
+var counter = 0;
+$(".right").click(function() {
+  counter++;
+  if (counter === 1) {
+    initMap();
+  }
+});
 
 console.log("Correct Map");
 
