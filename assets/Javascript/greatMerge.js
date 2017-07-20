@@ -1,4 +1,3 @@
-
 $("#floating-panel").hide();
 $("#textDirections").hide();
 // $("#")
@@ -6,123 +5,129 @@ $("#textDirections").hide();
 //============================================================= FIREBASE ===============================================================
 
 var config = {
-    apiKey: "AIzaSyAyiP6kOsyeTTR6DPWoKJDh0ouv24I_8Ws",
-    authDomain: "coffeeup-f6014.firebaseapp.com",
-    databaseURL: "https://coffeeup-f6014.firebaseio.com",
-    projectId: "coffeeup-f6014",
-    storageBucket: "",
-    messagingSenderId: "481137159989"
-  };
+  apiKey: "AIzaSyAyiP6kOsyeTTR6DPWoKJDh0ouv24I_8Ws",
+  authDomain: "coffeeup-f6014.firebaseapp.com",
+  databaseURL: "https://coffeeup-f6014.firebaseio.com",
+  projectId: "coffeeup-f6014",
+  storageBucket: "",
+  messagingSenderId: "481137159989"
+};
 
-  firebase.initializeApp(config);
-  var database = firebase.database();
+firebase.initializeApp(config);
+var database = firebase.database();
 
-  var americano = 0;
-  var auLait = 0;
-  var cappuccino = 0;
-  var espresso = 0;
-  var latte = 0;
-  var macchiatto = 0;
-  var mocha = 0;
-  var redEye = 0;
+var americano = 0;
+var auLait = 0;
+var cappuccino = 0;
+var espresso = 0;
+var latte = 0;
+var macchiatto = 0;
+var mocha = 0;
+var redEye = 0;
 
-  database.ref().on("value", function(snapshot) {
-    if(snapshot.child("latte").exists()) {
-      latte = snapshot.val().latte;
-    }
-    if(snapshot.child("americano").exists()) {
-      americano = snapshot.val().americano;
-    }
-    if(snapshot.child("auLait").exists()) {
-      auLait = snapshot.val().auLait;
-    }
-    if(snapshot.child("cappuccino").exists()) {
-      cappuccino = snapshot.val().cappuccino;
-    }
-    if(snapshot.child("espresso").exists()) {
-      espresso = snapshot.val().espresso;
-    }
-    if(snapshot.child("macchiatto").exists()) {
-      macchiatto = snapshot.val().macchiatto;
-    }
-    if(snapshot.child("mocha").exists()) {
-      mocha = snapshot.val().mocha;
-    }
-    if(snapshot.child("redEye").exists()) {
-      redEye = snapshot.val().redEye;
-    }
+database.ref().on("value", function(snapshot) {
+  if (snapshot.child("latte").exists()) {
+    latte = snapshot.val().latte;
+  }
+  if (snapshot.child("americano").exists()) {
+    americano = snapshot.val().americano;
+  }
+  if (snapshot.child("auLait").exists()) {
+    auLait = snapshot.val().auLait;
+  }
+  if (snapshot.child("cappuccino").exists()) {
+    cappuccino = snapshot.val().cappuccino;
+  }
+  if (snapshot.child("espresso").exists()) {
+    espresso = snapshot.val().espresso;
+  }
+  if (snapshot.child("macchiatto").exists()) {
+    macchiatto = snapshot.val().macchiatto;
+  }
+  if (snapshot.child("mocha").exists()) {
+    mocha = snapshot.val().mocha;
+  }
+  if (snapshot.child("redEye").exists()) {
+    redEye = snapshot.val().redEye;
+  }
 
-  });
+});
 
-function topThree(){
-  var coffee=[{
-            name:"Americano",
-            like:americano
-     },
-     {
-            name:"Latte",
-            like:latte
+function topThree() {
+  var coffee = [{
+      name: "Americano",
+      like: americano
+    },
+    {
+      name: "Latte",
+      like: latte
     },
 
-   {       name:"Aulait",
-            like:auLait
+    {
+      name: "Aulait",
+      like: auLait
 
-   },
-    {       name:"Cappiccino",
-            like:cappuccino
+    },
+    {
+      name: "Cappiccino",
+      like: cappuccino
 
-   },
-    {       name:"Espresso",
-            like:espresso
+    },
+    {
+      name: "Espresso",
+      like: espresso
 
-   },
-    {       name:"Macchiatto",
-            like:macchiatto
+    },
+    {
+      name: "Macchiatto",
+      like: macchiatto
 
-   },
-    {       name:"Mocha",
-            like:mocha
+    },
+    {
+      name: "Mocha",
+      like: mocha
 
-   },
-    {       name:"Redeye",
-            like:redEye
+    },
+    {
+      name: "Redeye",
+      like: redEye
 
-   }
+    }
   ];
 
 
-   // get keys from object
-   var arr = Object.keys(coffee);
-   // sort keys array based on score value
-   arr.sort(function(a, b) {
-     return coffee[b].like - coffee[a].like;
-   });
-   // iterate key array and assign rank value to object
-   for (var i = 0, rank = 1; i < arr.length; i++) {
-     // assign rank value
-     coffee[arr[i]].rank = rank;
-     // increment rank only if score value is changed
-     if (coffee[arr[i + 1]] && coffee[arr[i]].like != coffee[arr[i + 1]].like)
-       rank++;
+  // get keys from object
+  var arr = Object.keys(coffee);
+  // sort keys array based on score value
+  arr.sort(function(a, b) {
+    return coffee[b].like - coffee[a].like;
+  });
+  // iterate key array and assign rank value to object
+  for (var i = 0, rank = 1; i < arr.length; i++) {
+    // assign rank value
+    coffee[arr[i]].rank = rank;
+    // increment rank only if score value is changed
+    if (coffee[arr[i + 1]] && coffee[arr[i]].like != coffee[arr[i + 1]].like)
+      rank++;
 
-   }
+  }
 
 
-   coffee.sort(function(a, b){
-       if(a.rank < b.rank) return -1;
-       if(a.rank > b.rank) return 1;
-       return 0;
-       });
-   $("#ti").html("Top 3 preferd coffees")
-      $("#top").html("");
-     for (i=0; i<coffee.length;i++){
-       if (coffee[i].rank<=3) {
-         console.log(coffee[i]);
-          $("#top").append("("+coffee[i].rank+") "+coffee[i].name+"<br>")
-         }
-       }
+  coffee.sort(function(a, b) {
+    if (a.rank < b.rank) return -1;
+    if (a.rank > b.rank) return 1;
+    return 0;
+  });
+  $("#ti").html("Top 3 preferd coffees")
+  $("#top").html("");
+  for (i = 0; i < coffee.length; i++) {
+    if (coffee[i].rank <= 3) {
+      console.log(coffee[i]);
+      $("#top").append("(" + coffee[i].rank + ") " + coffee[i].name + "<br>")
+    }
+  }
 
-     }
+}
 
 
 
@@ -242,16 +247,16 @@ $('#questionString').html("What are you in the mood for?");
 
 $('#images').hide();
 
-$('button').keypress(function(event){
+$('button').keypress(function(event) {
 
-   if (event.keyCode === 10 || event.keyCode === 13)
-        event.preventDefault();
+  if (event.keyCode === 10 || event.keyCode === 13)
+    event.preventDefault();
 
- });
+});
 
-$('button').on('click', function () {
-    // alert($(this).text());
-    userChoice = $(this).text();
+$('button').on('click', function() {
+  // alert($(this).text());
+  userChoice = $(this).text();
 
   //black coffee
   switch (userChoice) {
@@ -265,7 +270,11 @@ $('button').on('click', function () {
       setDescription('americano');
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/americano.png");
       americano++;
@@ -283,7 +292,11 @@ $('button').on('click', function () {
     case 'flavor':
       $('#questionString').html("HAVE AN ESPRESSO");
       setDescription('espresso');
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/espresso.png");
       $('#buttonOne').hide("flavor");
@@ -300,7 +313,11 @@ $('button').on('click', function () {
       setDescription('list_of_coffee_drinks');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/redEye.png");
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
       redEye++;
@@ -326,7 +343,11 @@ $('button').on('click', function () {
     case 'coffee':
       $('#questionString').html("TRY A CAFE AU LATE");
       setDescription('cafe au lait');
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/auLait.png");
       $('#buttonOne').hide("flavor");
@@ -348,7 +369,11 @@ $('button').on('click', function () {
       setDescription('macchiato');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/macchiatto.png");
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
       macchiatto++;
@@ -363,7 +388,11 @@ $('button').on('click', function () {
       setDescription('cappuccino');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/cappuccino.png");
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#buttonOne').hide("flavor");
       $('#buttonTwo').hide("energy");
       cappuccino++;
@@ -383,7 +412,11 @@ $('button').on('click', function () {
       setDescription('latte');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/latte.png");
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#buttonOne').hide("unsweet");
       $('#buttonTwo').hide("chocolatey");
       latte++;
@@ -398,7 +431,11 @@ $('button').on('click', function () {
       setDescription('mocha');
       $('#images').show();
       $('#images').attr("src", "assets/Images/coffeeTypes/mocha.png");
-      $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
+      $("#bgBox").css({
+        "background-color": "white",
+        "opacity": "0.5",
+        "z-index": "-10"
+      });
       $('#buttonOne').hide("unsweet");
       $('#buttonTwo').hide("chocolatey");
       mocha++;
@@ -427,8 +464,6 @@ var austin;
 
 function initMap() {
 
-  $("#floating-panel").show();
-
   $("#mapText").html("Go and get some!");
 
   var austin = {
@@ -442,6 +477,10 @@ function initMap() {
     mapTypeId: "roadmap"
   });
 
+  // var control = document.getElementById('floating-panel');
+  // control.style.display = 'block';
+  // map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
   infowindow = new google.maps.InfoWindow();
   // infoWindowUser = new google.maps.InfoWindow();
 
@@ -452,7 +491,11 @@ function initMap() {
         lng: position.coords.longitude
       };
 
-      var marker = new google.maps.Marker({map: map, icon: 'assets/Images/blueDot.png', position: pos});
+      var marker = new google.maps.Marker({
+        map: map,
+        icon: 'assets/Images/blueDot.png',
+        position: pos
+      });
 
       map.setCenter(pos);
 
@@ -479,8 +522,8 @@ function initMap() {
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindowUser.setPosition(pos);
     infoWindowUser.setContent(browserHasGeolocation ?
-       'Error: The Geolocation service failed.' :
-       'Error: Your browser doesn\'t support geolocation.');
+      'Error: The Geolocation service failed.' :
+      'Error: Your browser doesn\'t support geolocation.');
     infoWindowUser.open(map);
     console.log("I just blocked this");
   }
@@ -541,14 +584,17 @@ function createMarker(place) {
     var iwCloseBtn = iwOuter.next();
     iwCloseBtn.css({
       opacity: '1', // by default the close button has an opacity of 0.7
-      right: '8px', top: '15px', // button repositioning
+      right: '8px',
+      top: '15px', // button repositioning
       border: '7px solid #48b5e9', // increasing button border and new color
       'border-radius': '13px', // circular effect
       'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
     });
 
-    iwCloseBtn.mouseout(function(){
-      $(this).css({opacity: '1'});
+    iwCloseBtn.mouseout(function() {
+      $(this).css({
+        opacity: '1'
+      });
     });
   });
 
@@ -565,15 +611,18 @@ function createMarker(place) {
 
     console.log(isOpen);
     var contentString = '<div id="iw-container">' +
-                      '<div class="iw-title">' + place.name + '</div>' +
-                        '<div class="iw-content">' +
-                          '<div id="open">' + isOpen + '</div><br>' +
-                          '<div id="rating">' + "Rating: " + place.rating + '</div>' +
-                          '<img id="image" src="' + place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}) + '"><br>' +
-                          '<button id="directions" onclick="getDirections()">' + "Directions" + '</button>' +
-                        '</div>' +
-                      '</div>' +
-                    '</div>';
+      '<div class="iw-title">' + place.name + '</div>' +
+      '<div class="iw-content">' +
+      '<div id="open">' + isOpen + '</div><br>' +
+      '<div id="rating">' + "Rating: " + place.rating + '</div>' +
+      '<img id="image" src="' + place.photos[0].getUrl({
+        'maxWidth': 100,
+        'maxHeight': 100
+      }) + '"><br>' +
+      '<button id="directions" onclick="getDirections()">' + "Directions" + '</button>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
     destination = place.geometry.location;
     infowindow.setContent(contentString);
     infowindow.open(map, this);
@@ -581,6 +630,8 @@ function createMarker(place) {
 }
 
 var travelMode = 'DRIVING';
+
+
 
 function getDirections() {
   $("#textDirections").show();
@@ -593,8 +644,14 @@ function getDirections() {
       lng: -97.7431
     }
   });
+
+  $("#floating-panel").show();
+
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel(document.getElementById('textDirections'));
+  var control = document.getElementById('floating-panel');
+  control.style.display = 'block';
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
   document.getElementById('mode').addEventListener('change', function() {
     travelMode = $('#mode').val();
     calculateAndDisplayRoute(directionsService, directionsDisplay);

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title> Coffee-Up </title>
   <meta charset="utf-8">
@@ -16,44 +17,42 @@
 
 <body>
 
-   <div class="container">
+  <div class="container">
 
-        <header >
-          <img src="assets/Images/logoCoffeeup.png" type="image/png" id="title">
-        </header>
+    <header>
+      <img src="assets/Images/logoCoffeeup.png" type="image/png" id="title">
+    </header>
 
-     <div id ="content" class="main-content-inner">
+    <div id="content" class="main-content-inner">
 
       <section class="full-screen-hero">
-        <video class="hero-video" autoplay loop >
+        <video class="hero-video" autoplay loop>
           <source src="assets/Images/new.mp4" type="video/mp4">
         </video>
       </section>
 
       <div class="grid">
 
-              <div id="bgBox"></div>
+        <div id="bgBox"></div>
 
-              <div id="questions">
-                  <h2 id="questionString">What are you in the mood for?</h2>
-              </div>
-              <div id="answers">
-                  <button class="btn" id="buttonOne">Black</button>
-                  <br>
-                  <button class="btn" id="buttonTwo">White</button>
-              </div>
-
-              <div id="imageContainer">
-                <img src="#" id="images">
-              </div>
-
-              <div id="wikiContainer">
-                <p id="wiki-info"></p>
-              </div>
-
-
-
+        <div id="questions">
+          <h2 id="questionString">What are you in the mood for?</h2>
         </div>
+        <div id="answers">
+          <button class="btn" id="buttonOne">Black</button>
+          <br>
+          <button class="btn" id="buttonTwo">White</button>
+        </div>
+
+        <div id="imageContainer">
+          <img src="#" id="images">
+        </div>
+
+        <div id="wikiContainer">
+          <p id="wiki-info"></p>
+        </div>
+
+      </div>
 
 
       <div id="mapText"></div>
@@ -61,7 +60,8 @@
       <div id="mapContainer">
 
         <br>
-        <div id="map"></div> <!--map-->
+        <div id="map"></div>
+        <!--map-->
         <div id="textDirections"></div>
 
         <div id="floating-panel">
@@ -76,18 +76,22 @@
 
 
 
-      </div> <!--map container-->
+      </div>
+      <!--map container-->
 
-    </div> <!--closes content-->
+    </div>
+    <!--closes content-->
 
     <div class="rankingContainer">
       <div id="ranking">
         <p id="ti"></p>
         <p id="top"></p>
       </div>
-    </div> <!--closes rankingcontainer-->
+    </div>
+    <!--closes rankingcontainer-->
 
-   </div> <!--closes container-->
+  </div>
+  <!--closes container-->
 
   <!-- Google Maps API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYSt64gQeJuUFHPhjWPTfiJmGjUOaBm6Y&libraries=places" async defer></script>
@@ -97,4 +101,5 @@
 
 
 </body>
+
 </html>
