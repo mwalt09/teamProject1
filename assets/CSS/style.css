@@ -1,17 +1,21 @@
+
+
 html {
     overflow-x: hidden;
 }
 
 body{
-    margin: 0 auto;
+    margin: 0 0;
     background-color: black;
     font-family: "Roboto", sans-serif;
+    text-align: center;
 }
 
 h2 {
   font-weight: 100;
   text-align: center;
   color: white;
+  font-size: 5em;
 }
 
 #questionString {
@@ -19,15 +23,14 @@ h2 {
 }
 
 .container {
-  margin: 0 auto;
+  margin: 0 0;
 }
 
-.grid{
+.questionArea{
   position: relative;
   margin: 0 auto;
   align-self: center;
-  padding: 1px;
-  width: 600px;
+  padding: 100px;
 }
 
 #answers {
@@ -65,30 +68,16 @@ h2 {
   color:white;
 }
 
-.hero-video{
-    position: absolute;
-    /*top: 50%;
-    left: 50%;*/
-    min-width: 100%;
-    min-height: 100%;
-    /*width: 100%;*/
-    height: auto;
-    /*-webkit-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);*/
 
-}
 
 header {
-  display: flex;
-  justify-content: center;
-  margin: 25px 0px 0px 0px;
+text-align: center;
+margin-bottom: 11%;
 }
 
 #title{
-     clear: both;
-     top: 0;
-     width: 600px;
-     align-self: center;
+     width: 80%;
+
 }
 
 video {
@@ -101,9 +90,8 @@ video {
     height: auto;
     z-index: -100;
     transform: translateX(-50%) translateY(-50%);
-    /*background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;*/
-    background-size: cover;
-    transition: 1s opacity;
+  background-size: cover;
+  transition: 1s opacity;
 }
 
 #imageContainer {
@@ -116,13 +104,10 @@ video {
 }
 
 #images {
-  display: block;
   max-width:250px;
   max-height:250px;
-  width: auto;
   height: auto;
-  align-self: center;
-  align-items: center;
+  width: auto;
   text-align: center;
 }
 
@@ -152,14 +137,12 @@ video {
 }
 
 #wiki-info {
-  width: 600px;
   padding: 20px;
   margin: 15px;
   color: white;
   font-family: "Roboto", sans-serif;
   font-weight: 200;
   font-size: 1em;
-  text-align: left;
 }
 
 /* ===================================================== GOOGLE MAPS =======================================================*/
@@ -172,21 +155,17 @@ body {
 }
 
 #mapText {
+  text-align: center;
   margin-top: 40px;
-  width: 900px;
-  position: relative;
-  left: 120px;
   font-family: "Roboto", sans-serif;
   color: white;
-  font-size: 2em;
+  font-size: 15em;
   font-weight: 200;
   text-transform: uppercase;
   letter-spacing: 5px;
 }
 
 #mapContainer {
-  width: 900px;
-  height: 350px;
   position: relative;
   margin: 0 auto;
   justify-content: center;
@@ -194,6 +173,7 @@ body {
   align-self: center;
 
 }
+
 
 #map {
   position: relative;
@@ -250,49 +230,182 @@ body {
 
 #iw-container .iw-title {
   font-family: 'Open Sans Condensed', sans-serif;
-  font-size: 22px;
+  font-size: 1.5em;
   font-weight: 400;
-  padding: 0 0 10px 10px;
-  /*background-color: #48b5e9;*/
-  /*color: white;*/
-  margin: 0;
-  border-radius: 2px 2px 0 0;
-  width: 100%;
+  padding: 10px;
 }
 
 .iw-content {
   padding: 0 0 10px 10px;
 }
 
-.iw-content #open {
-  /*float: left;*/
-  display: inline-block;
-}
-
 .iw-content #rating {
-  /*float: right;*/
-  display: inline-block;
+  margin: 2%;
 }
 
 #image {
-  /*float: right;*/
+  margin-bottom: 5%;
 }
 
 .gm-style-iw {
-  max-width: 350px;
-  min-width: 200px;
-  top: 15px !important;
-  left: 0 !important;
-  /*background-color: #fff;*/
-  /*box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-  border: 1px solid rgba(72, 181, 233, 0.6);
-  border-radius: 2px 2px 10px 10px;*/
+  top: 17px !important;
+  left: 20px !important;
+  background-color: #fff;
+  border-radius: 2px 2px 10px 10px;
 }
 
 
 /* ===================================================== RANKING =======================================================*/
 
 .rankingContainer {
+  margin: 0 auto;
+  width: 80%;
+  position: relative;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  margin-top: 100px;
+}
+
+#rankingBox {
+  position: absolute;
+  left: 130px;
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.4;
+  align-self: center;
+  margin: 0 auto;
+
+}
+
+#ranking{
+  position: relative;
+  padding: 10px;
+  color: white;
+  margin: 0 auto;
+  width: 40%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 200;
+  font-size: 1.3em;
+}
+
+#ti {
+  position: relative;
+  left: 10px;
+  color: black;
+  font-size: 2em;
+  font-weight: 300;
+}
+
+#top {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+
+#top img {
+  height: 25px;
+  width: auto;
+  float: left;
+  margin-left: 10px;
+}
+
+.black-text {
+
+  position: relative;
+  float: left;
+}
+/* ===================================================== CAROUSEL =======================================================*/
+
+#myCarousel{
+  position: relative;
+}
+
+.carousel-indicators {
+  position: fixed;
+  bottom: 0px;
+}
+
+.left, .carousel-control {
+  position: fixed;
+  left: 0px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 25px;
+}
+
+.right, .carousel-control {
+  position: fixed;
+  left: 0px;
+  height: 100%;
+}
+
+
+/*=================================================== RESPONSIVE =============================================================*/
+
+@media screen and (max-width: 1366px) {
+
+  header {
+    margin-bottom: 0;
+  }
+
+  #title {
+    width: 600px;
+  }
+
+  .questionArea {
+    margin-top: 30px;
+    padding: 10px;
+  }
+
+  #answers {
+    margin: 10px;
+
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 3em;
+  }
+
+  #wiki-info {
+    font-size: 3em;
+  }
+
+  #questionString{
+    padding: 0;
+    margin-top: 0;
+    }
+
+    #map {
+      position: relative;
+      margin: 0 auto;
+      height: 350px;
+      float: left;
+      width: 100%;
+    }
+
+  #mapText{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 3.5vw;
+    text-align: left;
+  }
+
+  #mapContainer{
+      margin:0;
+    }
+}
+
+.rankingContainer {
+  margin: 0 auto;
+  width: 80%;
   position: relative;
   align-items: center;
   align-content: center;
@@ -338,32 +451,332 @@ body {
   width: auto;
   float: left;
 }
-/* ===================================================== CAROUSEL =======================================================*/
 
-#myCarousel{
+.center-block {
+    display: block;
+ }
+
+.black-text {
+
+}
+
+/* ============================================== 1280 px ==========================*/
+
+@media screen and (max-width: 1280px) {
+
+  #title {
+    margin-top: 20px;
+    width: 700px;
+  }
+
+  .questionArea {
+    padding: 55px;
+
+  }
+
+  #questionString {
+    margin-bottom: 40px;
+  }
+
+  #answers {
+    margin: 10px;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+  }
+
+  #imageContainer {
+  align-self: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+#images {
+  display: block;
+  max-width:200px;
+  max-height:200px;
+  align-self: center;
+  align-items: center;
+  text-align: center;
+}
+
+  #wikiContainer {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  #wiki-info {
+    font-size: 1em;
+  }
+
+  #questionString{
+    padding: 0;
+    margin-top: 0;
+    }
+
+  #map{
+  height: 350px ;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+  }
+
+  #mapText{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    font-size: 3.5vw;
+    text-align: left;
+  }
+
+  #mapContainer{
+      margin: 0 auto;
+      width: 80%;
+      height: 350px;
+
+    }
+}
+
+#ti {
+  font-size: 16px;
+}
+
+/*.black-text {
+  font-size: 16px;
+}*/
+
+/* ============================================== 960 px ==========================*/
+
+@media screen and (max-width: 960px) {
+
+  #title {
+    width: 700px;
+    margin-top: 50px;
+  }
+
+  .questionArea {
+    margin-top: 120px;
+  }
+
+
+  #answers {
+    margin: 10px;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  #wiki-info {
+    font-size: 1.5em;
+  }
+
+  #questionString{
+    padding: 0;
+    margin-top: 0;
+    }
+
+  #map{
+    height: 500px;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+  }
+
+  #textDirections {
+    height: 500px;
+  }
+
+  #mapText{
+    margin: 0 auto;
+    width: 80%;
+    font-size: 5vw;
+    text-align: left;
+    padding: 90px 0px 30px 0px;
+  }
+
+  #mapContainer{
+      margin: 0 auto;
+      width: 80%;
+    }
+}
+
+.rankingContainer {
+  margin: 0 auto;
   position: relative;
+  margin-top: 200px;
 }
 
-.carousel-indicators {
-  position: fixed;
-  bottom: 0px;
+#ranking {
+  margin: 0 auto;
+  width: 100%;
 }
 
-.left, .carousel-control {
-  position: fixed;
-  left: 0px;
-  height: 100%;
+#rankingBox {
+  margin: 0 auto;
+  width: 100%;
+  left: 0;
 }
 
-.right, .carousel-control {
-  position: fixed;
-  left: 0px;
-  height: 100%;
+#ti {
+  position: relative;
+  margin: 0 auto;
+}
+
+#ti , p {
+  font-size: 4vw;
+}
+
+#top , p {
+  font-size: 4vw;
+}
+
+#top img {
+  height: 35px;
+  width: auto;
 }
 
 
 
+/* ============================================== 640 px ==========================*/
 
-@media only screen and (max-width: 500px) {
-  #title{ width:100%;}
+
+@media screen and (max-width: 640px) {
+
+  #title {
+    width: 380px;
+  }
+
+  .questionArea {
+    padding: 10px;
+    margin-top: 50px;
+  }
+
+  #answers {
+    margin: 10px;
+  }
+
+  #images {
+    max-height: 200px;
+    max-width: 200px;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+  }
+
+  #wiki-info {
+    font-size: 1.2em;
+  }
+
+  #questionString{
+    padding: 0;
+    margin-top: 0;
+    }
+
+  #mapContainer {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #map{
+    width: 100%;
+    height: 500px;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+  }
+
+  #mapText{
+    padding: 10px 0px 0px 0px;
+    width: 90%;
+    margin: 0 auto;
+    font-size: 7.4vw;
+    text-align: left;
+  }
+
+}
+
+
+
+/* ============================================== 320 px ==========================*/
+
+
+@media screen and (max-width: 320px) {
+
+  #title {
+    width:80%;
+  }
+
+  .questionArea {
+    padding: 10px;
+  }
+
+  #answers {
+    margin: 10px;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+  }
+
+  #wiki-info {
+    font-size: 1.5em;
+  }
+
+  #questionString{
+    padding: 0;
+    margin-top: 0;
+    }
+
+  #map{
+    height: 0;
+    width: 100%;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+  }
+
+  #mapText{
+    width: 90%;
+    margin: 0 auto;
+    font-size: 7.4vw !important;
+  }
+
+  #mapContainer{
+      margin: 0 auto;
+      width: 90%;
+    }
+
+  .rankingContainer {
+    margin-top: 80px;
+    width: 100%;
+  }
+
+  #ti {
+    width: 300px;
+  }
+
+  #ti , p {
+    width: 90%;
+    font-size: 7vw;
+  }
+
+  #top {
+    padding-top: 10px;
+  }
+
+  #top , p{
+    font-size: 7vw;
+  }
 }

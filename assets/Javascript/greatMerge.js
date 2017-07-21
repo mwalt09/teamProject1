@@ -116,10 +116,10 @@ function topThree(){
        });
    $("#ti").html("Choose your next coffee, here are our top selections:");
       $("#top").html("");
-     for (i=0; i<coffee.length;i++){
+     for (i=0; i<3;i++){
        if (coffee[i].rank<=3) {
          console.log(coffee[i]);
-          $("#top").append('<div class="col s12 m8 offset-m2 l6 offset-l3"><div class="card-panel grey lighten-5 z-depth-1"><div class="row valign-wrapper"><div class="col s2"><img src="https://freeiconshop.com/wp-content/uploads/edd/coffee-flat.png" alt="" class="circle responsive-img">'+ ' ' + '</div><div class="col s10"><span class="black-text">' + coffee[i].rank + ')   ' + coffee[i].name + '</span></div></div></div></div> <br>');
+            $("#top").append('<div class="col s12 m8 offset-m2 l6 offset-l3"><div class="card-panel grey lighten-5 z-depth-1"><div class="row valign-wrapper"><div class="col s2"><img src="https://freeiconshop.com/wp-content/uploads/edd/coffee-flat.png" alt="" class="circle responsive-img">'+ ' ' + '</div><div class="col s10"><span class="black-text">' + coffee[i].name + '</span></div></div></div></div> <br>');
          }
        }
 
@@ -263,7 +263,6 @@ $('button').on('click', function () {
       break;
     case 'Large':
       $('#questionString').html("DRINK AN AMERICANO");
-      $("#questionString").css("margin-top", "20px");
       $("#answers").hide();
       setDescription('americano');
       $('#buttonOne').hide("flavor");
@@ -285,7 +284,6 @@ $('button').on('click', function () {
       break;
     case 'flavor':
       $('#questionString').html("HAVE AN ESPRESSO");
-      $("#questionString").css("margin-top", "85px");
       $("#answers").hide();
       setDescription('espresso');
       $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
@@ -302,7 +300,6 @@ $('button').on('click', function () {
       break;
     case 'energy':
       $('#questionString').html("FOR ROUGH DAYS, TRY A RED EYE");
-      $("#questionString").css("margin-top", "50px");
       $("#answers").hide();
       setDescription('list_of_coffee_drinks');
       $('#images').show();
@@ -332,7 +329,6 @@ $('button').on('click', function () {
       break;
     case 'coffee':
       $('#questionString').html("TRY A CAFE AU LATE");
-      $("#questionString").css("margin-top", "30px");
       $("#answers").hide();
       setDescription('cafe au lait');
       $("#bgBox").css({"background-color": "white", "opacity": "0.5", "z-index": "-10"});
@@ -354,7 +350,6 @@ $('button').on('click', function () {
       break;
     case 'sweet':
       $('#questionString').html("TRY A MACCHIATO");
-      $("#questionString").css("margin-top", "45px");
       $("#answers").hide();
       setDescription('macchiato');
       $('#images').show();
@@ -371,7 +366,6 @@ $('button').on('click', function () {
       break;
     case 'bitter':
       $('#questionString').html("CAPPUCCINO TIME");
-      $("#questionString").css("margin-top", "40px");
       $("#answers").hide();
       setDescription('cappuccino');
       $('#images').show();
@@ -393,7 +387,6 @@ $('button').on('click', function () {
       break;
     case 'unsweet':
       $('#questionString').html("LATTE TIME");
-      $("#questionString").css("margin-top", "40px");
       $("#answers").hide();
       setDescription('latte');
       $('#images').show();
@@ -410,7 +403,6 @@ $('button').on('click', function () {
       break;
     case 'chocolatey':
       $('#questionString').html("HAVE A MOCHA");
-      $("#questionString").css("margin-top", "45px");
       $("#answers").hide();
       setDescription('mocha');
       $('#images').show();
@@ -543,39 +535,12 @@ function createMarker(place) {
   placeLoc = place.geometry.location;
   var marker = new google.maps.Marker({
     map: map,
-    // icon: 'coffee-icon-png-24.png',
     animation: google.maps.Animation.DROP,
     position: place.geometry.location
   });
 
   // console.log("item: " + place.geometry.location);
-  console.log(place);
-
-  google.maps.event.addListener(infowindow, 'domready', function() {
-    var iwOuter = $('.gm-style-iw');
-    var iwBackground = iwOuter.prev();
-    // iwBackground.children(':nth-child(2)').css({'display': 'none'});
-    // iwBackground.children(':nth-child(4)').css({'display': 'none'});
-    // iwOuter.parent().parent().css({left: '115px'});
-    // iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
-    // iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'left: 76px !important;'});
-    // iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
-
-    var iwCloseBtn = iwOuter.next();
-    iwCloseBtn.css({
-      opacity: '1', // by default the close button has an opacity of 0.7
-      right: '8px', top: '15px', // button repositioning
-      border: '7px solid #48b5e9', // increasing button border and new color
-      'border-radius': '13px', // circular effect
-      'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
-    });
-
-    iwCloseBtn.mouseout(function(){
-      $(this).css({opacity: '1'});
-    });
-  });
-
-
+  // console.log(place);
 
   google.maps.event.addListener(marker, 'click', function() {
     isOpen = place.opening_hours.open_now;
@@ -590,9 +555,9 @@ function createMarker(place) {
     var contentString = '<div id="iw-container">' +
                       '<div class="iw-title">' + place.name + '</div>' +
                         '<div class="iw-content">' +
-                          '<div id="open">' + isOpen + '</div><br>' +
+                          '<div id="open">' + isOpen + '</div>' +
                           '<div id="rating">' + "Rating: " + place.rating + '</div>' +
-                          '<img id="image" src="' + place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}) + '"><br>' +
+                          '<img id="image" src="' + place.photos[0].getUrl({'maxWidth': 75, 'maxHeight': 75}) + '"><br>' +
                           '<button id="directions" onclick="getDirections()">' + "Directions" + '</button>' +
                         '</div>' +
                       '</div>' +
@@ -607,6 +572,8 @@ var travelMode = 'DRIVING';
 
 function getDirections() {
   $("#textDirections").show();
+  $("#textDirections").css("width", "40%");
+  $("#map").css("width", "60%");
   var directionsService = new google.maps.DirectionsService;
   var directionsDisplay = new google.maps.DirectionsRenderer;
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -617,8 +584,6 @@ function getDirections() {
     }
   });
   $("#floating-panel").show();
-  $("#textDirections").css("width", "40%");
-  $("#map").css("width", "60%");
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel(document.getElementById('textDirections'));
   var control = document.getElementById("floating-panel");
